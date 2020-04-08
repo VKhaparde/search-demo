@@ -12,15 +12,18 @@ div{
 button{
   width: 10%;
   height:50px;
-  background-color: green;
+  background-color: rgb(19, 150, 19);
   font-weight: bold;
+  color:white;
 }
 button:hover {
-  opacity: 1;
   cursor: pointer;
+  color:white;
+  font-size: large;
 }
 .userInput{
   width: 20%;
   height:50px;
   border:2px solid black;
+  font-size: large;
 }
