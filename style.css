@@ -1,7 +1,7 @@
 
 body{
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .main{
   display:flex;
@@ -15,16 +15,18 @@ div{
   padding: 10px;
 }
 button{
-  width: 10%;
-  height:50px;
+  width: 50%;
+  height:60px;
   background-color: rgb(19, 150, 19);
-  font-weight: bold;
+  font-size: 1.5rem;
   color:white;
 }
 button:hover {
   cursor: pointer;
   color:white;
-  font-size: large;
+  font-weight: bold;
+  background-color: rgb(30, 87, 30);
+
 }
 .userInput{
   width: 100%;
@@ -39,8 +41,10 @@ button:hover {
   color:blue;
 }
 .name{
+  font-size: 1.5rem;
   font-weight: bold;
   color:blue;
+  text-decoration: underline;
 }
 .businesses{
 
@@ -49,8 +53,8 @@ button:hover {
   height: 1000px;
   display:flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
 }
 .image{
   display: flex;

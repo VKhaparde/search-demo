@@ -53,15 +53,17 @@ class YelpInfo{
     }
     else{
       responseData.businesses.map((currentVal) => {
-        this.domElements.name = $('<div>').addClass("name").text(currentVal.name);
+        // this.domElements.name = $('<div>').addClass("name").text(currentVal.name);
+        this.domElements.name = $('<a>').addClass("name");
+        this.domElements.name.attr("href", currentVal.url);
+        this.domElements.name.text(currentVal.name);
+
         this.domElements.phoneNumber = $('<div>').addClass("phone").text("Phone: "+currentVal.display_phone);
         this.domElements.rating = $('<div>').addClass("rating").text("Rating: "+currentVal.rating);
-        this.domElements.image = $('<a>',{
+        this.domElements.image = $('<div>',{
           class : "image",
           css : {
-            "background-image":"url(" +currentVal.image_url+ ") ",
-            "src" : "url(" +currentVal.url+")",
-            "href":
+            "background-image": "url(" +currentVal.image_url+ ")"
           },
         });
         this.domElements.address = $('<div>').addClass("address").text("Address: ");
