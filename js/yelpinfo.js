@@ -55,9 +55,9 @@ class YelpInfo{
       responseData.businesses.map((currentVal) => {
         // this.domElements.name = $('<div>').addClass("name").text(currentVal.name);
         this.domElements.name = $('<a>').addClass("name");
-        this.domElements.name.attr("href", currentVal.url);
         this.domElements.name.text(currentVal.name);
-
+        this.domElements.name.attr("href", currentVal.url);
+        this.domElements.name.attr("target","_blank");
         this.domElements.phoneNumber = $('<div>').addClass("phone").text("Phone: "+currentVal.display_phone);
         this.domElements.rating = $('<div>').addClass("rating").text("Rating: "+currentVal.rating);
         this.domElements.image = $('<div>',{
