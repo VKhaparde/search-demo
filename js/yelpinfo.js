@@ -5,7 +5,7 @@ class YelpInfo{
     address: null,
     rating : null,
     phoneNumber:null,
-    url: null
+    image: null
   };
 }
   getData = ()=>{
@@ -49,23 +49,30 @@ class YelpInfo{
     console.log(responseData);
     $(".businesses").empty();
     if(responseData.businesses.length === 0){
-      $(".businesses").addClass("noData").text("Sorry! No data is available");
+      $(".businesses").addClass("noData").text("Sorry! No data is available for your search.");
     }
     else{
       responseData.businesses.map((currentVal) => {
         this.domElements.name = $('<div>').addClass("name").text(currentVal.name);
-        this.domElements.phoneNumber = $('<div>').addClass("phone").text(currentVal.display_phone);
-        this.domElements.rating = $('<div>').addClass("rating").text(currentVal.rating)
-        this.domElements.address = $('<div>').addClass("address");
-        //.text(currentVal.location.display_address[0])
+        this.domElements.phoneNumber = $('<div>').addClass("phone").text("Phone: "+currentVal.display_phone);
+        this.domElements.rating = $('<div>').addClass("rating").text("Rating: "+currentVal.rating);
+        this.domElements.image = $('<a>',{
+          class : "image",
+          css : {
+            "background-image":"url(" +currentVal.image_url+ ") ",
+            "src" : "url(" +currentVal.url+")",
+            "href":
+          },
+        });
+        this.domElements.address = $('<div>').addClass("address").text("Address: ");
         let addressPart = currentVal.location.display_address;
         addressPart.map((element) => {
           let addressLine = $('<div>').addClass('addressLine').text(element);
           this.domElements.address.append(addressLine);
         });
-        var businessElement = $('<div>').addClass('businessElement');
-        businessElement.append(this.domElements.name, this.domElements.phoneNumber,
-          this.domElements.rating, this.domElements.address);
+        let businessElement = $('<div>').addClass('businessElement');
+        businessElement.append(this.domElements.name,this.domElements.address,
+          this.domElements.phoneNumber, this.domElements.rating, this.domElements.image);
         $(".businesses").append(businessElement);
       })
     }

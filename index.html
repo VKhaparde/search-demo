@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous">
     </script>
@@ -15,23 +17,27 @@
 </head>
 
 <body>
-  <div class="container">
-    <div>
-      <label for="">Enter any topic:</label>
-      <input type="text" class="userInput searchTopic"></input>
+  <div class="main">
+    <div class="container">
+      <div>
+        <label for="">Enter any topic:</label>
+        <input type="text" class="userInput searchTopic"></input>
+      </div>
+      <div>
+        <label for="">Enter address:</label>
+        <input type="text" class="userInput searchAddress">
+      </div>
+      <div>
+        <label for="">Enter radius:</label>
+        <input type="text" class="userInput searchRadius">
+      </div>
+      <div>
+        <button class="searchButton">GO</button>
+      </div>
+      <div class="businesses"></div>
     </div>
-    <div>
-      <label for="">Enter your city or zipcode:</label>
-      <input type="text" class="userInput searchAddress">
+    <div class="maps">
     </div>
-    <div>
-      <label for="">Enter radius:</label>
-      <input type="text" class="userInput searchRadius">
-    </div>
-    <div>
-      <button class="searchButton">GO</button>
-    </div>
-    <div class="businesses"></div>
   </div>
 </body>
 
