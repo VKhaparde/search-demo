@@ -63,8 +63,10 @@ class YelpInfo{
          let addressLine = $('<div>').addClass('addressLine').text(element);
         this.domElements.address.append(addressLine);
       });
-      $(".businesses").append(this.domElements.name,this.domElements.phoneNumber,
+      var businessElement = $('<div>').addClass('businessElement');
+      businessElement.append(this.domElements.name,this.domElements.phoneNumber,
         this.domElements.rating,this.domElements.address);
+      $(".businesses").append(businessElement);
     })
   }
 }
