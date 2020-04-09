@@ -1,4 +1,4 @@
-class YelpInfo{
+class YelpInfo {
   constructor(){
   this.domElements = {
     name: null,
