@@ -30,3 +30,6 @@ button:hover {
 .businessElement{
     border:2px solid black;
 }
+.noData{
+  color:blue;
+}
