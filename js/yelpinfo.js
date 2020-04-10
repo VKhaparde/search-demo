@@ -15,7 +15,6 @@ class YelpInfo {
       userSearchRadius: (parseInt(($('.searchRadius').val()) * 1609.34)).toString()
     }
     let radius = parseFloat($('.searchRadius').val());
-    console.log('radius',radius);
     if (radius === 0) {
       $('.resultsNum').text("No results found.");
       $(".businesses").empty();
@@ -65,6 +64,7 @@ class YelpInfo {
   displayUserResults(responseData) {
     $(".businesses").empty();
     if (responseData.businesses.length === 0) {
+      $('.resultsNum').text("");
       $(".businesses").addClass("noData").text("Sorry! No data is available for your search.");
     }
     else {
