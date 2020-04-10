@@ -39,7 +39,7 @@ class YelpInfo {
         this.displayUserResults(response);
       },
       error : ()=>{
-        alert("Sorry! Cannot get the results at this time. Check if the radius is less than 25 miles.");
+        alert("Sorry! Cannot get the results at this time.Check if your inputs are valid.");
       }
     };
     $.ajax(ajaxConfigObj);
