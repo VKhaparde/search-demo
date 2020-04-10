@@ -1,34 +1,50 @@
 class YelpInfo {
-  constructor(){
-  this.domElements = {
-    name: null,
-    address: null,
-    rating : null,
-    phoneNumber:null,
-    image: null
-  };
-}
-  getData = ()=>{
+  constructor() {
+    this.domElements = {
+      name: null,
+      address: null,
+      rating: null,
+      phoneNumber: null,
+      image: null
+    };
+  }
+  getData = () => {
     let userData = {
-      userSearchTopic : $('.searchTopic').val(),
-      userSearchAddress : $('.searchAddress').val(),
+      userSearchTopic: $('.searchTopic').val(),
+      userSearchAddress: $('.searchAddress').val(),
       userSearchRadius: (parseInt(($('.searchRadius').val()) * 1609.34)).toString()
     }
-    console.log(userData);
+    let radius = parseFloat($('.searchRadius').val());
+    console.log('radius',radius);
+    if (radius === 0) {
+      $('.resultsNum').text("No results found.");
+      $(".businesses").empty();
+      return;
+    }
+    else if (radius > 0 && radius < 1) {
+      userData.userSearchRadius = "1";
+    }
+    else if (radius >= 24) {
+      userData.userSearchRadius = "";
+    }
+    else{
+      userData.userSearchRadius = (parseInt(($('.searchRadius').val()) * 1609.34)).toString();
+    }
     this.getSearchResults(userData);
   }
-  getSearchResults(userData){
+  getSearchResults(userData) {
     let ajaxConfigObj = {
       async: true,
       crossDomain: true,
-      dataType : "json",
+      dataType: "json",
       url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search",
       data: {
-        term : userData.userSearchTopic,
-        location:userData.userSearchAddress,
-        radius:userData.userSearchRadius
+        term: userData.userSearchTopic,
+        location: userData.userSearchAddress,
+        radius: userData.userSearchRadius,
+        sort_by: "distance"
       },
-     method:'get',
+      method: 'get',
       "headers": {
         "accept": "application/json",
         "x-requested-with": "xmlhttprequest",
@@ -38,31 +54,32 @@ class YelpInfo {
       success: response => {
         this.displayUserResults(response);
       },
-      error : ()=>{
+      error: () => {
         alert("Sorry! Cannot get the results at this time.Check if your inputs are valid.");
+        $('.resultsNum').text("");
+        $(".businesses").empty();
       }
     };
     $.ajax(ajaxConfigObj);
   }
-  displayUserResults(responseData){
-    console.log(responseData);
+  displayUserResults(responseData) {
     $(".businesses").empty();
-    if(responseData.businesses.length === 0){
+    if (responseData.businesses.length === 0) {
       $(".businesses").addClass("noData").text("Sorry! No data is available for your search.");
     }
-    else{
+    else {
+      $('.resultsNum').text("Showing top " + responseData.businesses.length + " matches...");
       responseData.businesses.map((currentVal) => {
-        // this.domElements.name = $('<div>').addClass("name").text(currentVal.name);
         this.domElements.name = $('<a>').addClass("name");
         this.domElements.name.text(currentVal.name);
         this.domElements.name.attr("href", currentVal.url);
-        this.domElements.name.attr("target","_blank");
-        this.domElements.phoneNumber = $('<div>').addClass("phone").text("Phone: "+currentVal.display_phone);
-        this.domElements.rating = $('<div>').addClass("rating").text("Rating: "+currentVal.rating);
-        this.domElements.image = $('<div>',{
-          class : "image",
-          css : {
-            "background-image": "url(" +currentVal.image_url+ ")"
+        this.domElements.name.attr("target", "_blank");
+        this.domElements.phoneNumber = $('<div>').addClass("phone").text("Phone: " + currentVal.display_phone);
+        this.domElements.rating = $('<div>').addClass("rating").text("Rating: " + currentVal.rating);
+        this.domElements.image = $('<div>', {
+          class: "image",
+          css: {
+            "background-image": "url(" + currentVal.image_url + ")"
           },
         });
         this.domElements.address = $('<div>').addClass("address").text("Address: ");
@@ -72,7 +89,7 @@ class YelpInfo {
           this.domElements.address.append(addressLine);
         });
         let businessElement = $('<div>').addClass('businessElement');
-        businessElement.append(this.domElements.name,this.domElements.address,
+        businessElement.append(this.domElements.name, this.domElements.address,
           this.domElements.phoneNumber, this.domElements.rating, this.domElements.image);
         $(".businesses").append(businessElement);
       })

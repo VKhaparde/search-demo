@@ -30,17 +30,17 @@
         <input type="text" class="userInput searchAddress" required autocomplete="on">
       </div>
       <div>
-        <label for="">Enter radius only if less than 25 miles:</label>
-        <input type="number" class="userInput searchRadius" required autocomplete="on"
-        min="0" max="25">
+        <label for="">Enter radius:</label>
+        <input type="text" class="userInput searchRadius" required autocomplete="on"
+        pattern="^[1-9]\d*(\.\d+)?$" title="Please enter valid number">
       </div>
       <div>
         <button class="searchButton">GO</button>
       </div>
+      <div class="resultsNum"></div>
       <div class="businesses"></div>
     </div>
-    <div class="maps">
-    </div>
+  </div>
   </div>
 </body>
 

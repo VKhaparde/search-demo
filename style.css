@@ -65,3 +65,6 @@ button:hover {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.resultsNum{
+  color:green;
+}
