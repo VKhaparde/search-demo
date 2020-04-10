@@ -30,8 +30,9 @@
         <input type="text" class="userInput searchAddress" required autocomplete="on">
       </div>
       <div>
-        <label for="">Enter radius:</label>
-        <input type="text" class="userInput searchRadius" required autocomplete="on">
+        <label for="">Enter radius only if less than 25 miles:</label>
+        <input type="number" class="userInput searchRadius" required autocomplete="on"
+        min="0" max="25">
       </div>
       <div>
         <button class="searchButton">GO</button>

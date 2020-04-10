@@ -14,7 +14,6 @@ class YelpInfo {
       userSearchAddress : $('.searchAddress').val(),
       userSearchRadius: (parseInt(($('.searchRadius').val()) * 1609.34)).toString()
     }
-    console.log(userData.userSearchTopic,userData.userSearchAddress,userData.userSearchRadius);
     console.log(userData);
     this.getSearchResults(userData);
   }
@@ -40,7 +39,7 @@ class YelpInfo {
         this.displayUserResults(response);
       },
       error : ()=>{
-        alert("Sorry! Cannot get the results at this time.")
+        alert("Sorry! Cannot get the results at this time. Check if the radius is less than 25 miles.");
       }
     };
     $.ajax(ajaxConfigObj);
